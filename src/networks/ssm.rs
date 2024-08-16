@@ -105,13 +105,13 @@ impl Neuron {
 
     pub fn drain(&mut self, retain: usize) -> usize {
         if self.taus.len() != self.states.len() {
-            println!("(tiny) states:taus mismatch, attempting sync...");
+            println!("(ssm) states:taus mismatch, attempting sync...");
             Neuron::sync(&mut self.taus, &mut self.states)
         }
 
         if self.targets.len() > 0 {
             if self.targets.len() != self.states.len() {
-                println!("(tiny) targets:(states:taus) mismatch, attempting sync...");
+                println!("(ssm) targets:(states:taus) mismatch, attempting sync...");
                 Neuron::sync(&mut self.targets, &mut self.states);
                 Neuron::sync(&mut self.targets, &mut self.taus);
             }
@@ -418,7 +418,7 @@ impl ContinuousNetwork for SsmNetwork {
             .all(|e| *e == *reference_steps);
 
         if !state_synchronized {
-            panic!("(tiny) neurons fell out of sync!");
+            panic!("(ssm) neurons fell out of sync!");
         }
 
         let loss = match self.backward(*reference_steps, learning_rate) {
