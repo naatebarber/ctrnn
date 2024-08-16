@@ -2,6 +2,8 @@
 name = "ctrnn"
 version = "0.1.0"
 edition = "2021"
+description = "Supervised and unsupervised CTRNNs with parallelism"
+license = "MIT"
 
 [dependencies]
 bincode = "1.3.3"
